@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>BUILDER VENTURE STUDIO | Constructores de Productos Digitales</title>
+    <meta name="description" content="BUILDER VENTURE STUDIO es un estudio de construcción de productos digitales. Usamos IA para acelerar el desarrollo, validar ideas y lanzar ventures funcionales en semanas.">
+    
+    <!-- Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F7;
+            --bg-tertiary: #FBFBFD;
+            --text-primary: #0A0A0A;
+            --text-secondary: #6E6E73;
+            --text-tertiary: #86868B;
+            --accent: #0071E3;
+            --accent-hover: #0077ED;
+            --border: rgba(0,0,0,0.08);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-lg: 0 16px 32px rgba(0,0,0,0.12);
+        }
+        
+        .dark {
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --bg-tertiary: #161617;
+            --text-primary: #F5F5F7;
+            --text-secondary: #A1A1A6;
+            --text-tertiary: #6E6E73;
+            --accent: #0A84FF;
+            --accent-hover: #409CFF;
+            --border: rgba(255,255,255,0.1);
+            --glass-bg: rgba(22, 22, 23, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { font-family: 'Clash Display', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+        
+        .glass { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(180%); border: 1px solid var(--glass-border); }
+        
+        .navbar { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .navbar.scrolled { background: var(--glass-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+        
+        .btn-primary { background: var(--accent); color: white; transition: all 0.3s ease; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 40px rgba(0, 113, 227, 0.3); }
+        
+        .project-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            cursor: pointer;
+        }
+        .project-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow-lg); }
+        
+        .status-badge { font-size: 0.7rem; font-weight: 500; padding: 0.25rem 0.75rem; border-radius: 100px; display: inline-flex; align-items: center; gap: 0.35rem; }
+        .status-Ideación { background: #E0E7FF; color: #4F46E5; }
+        .status-MVP { background: #FEF3C7; color: #D97706; }
+        .status-Fase1 { background: #DBEAFE; color: #2563EB; }
+        .status-Fase2 { background: #D1FAE5; color: #059669; }
+        .status-Fase3 { background: #EDE9FE; color: #7C3AED; }
+        .dark .status-Ideación { background: #1E1B4B; color: #818CF8; }
+        .dark .status-MVP { background: #451A03; color: #F59E0B; }
+        .dark .status-Fase1 { background: #1E3A5F; color: #60A5FA; }
+        .dark .status-Fase2 { background: #064E3B; color: #34D399; }
+        .dark .status-Fase3 { background: #2E1065; color: #A78BFA; }
+        
+        .modal-iframe { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-iframe.active { display: flex; }
+        .modal-content { width: 90%; max-width: 1300px; height: 85vh; background: white; border-radius: 28px; overflow: hidden; animation: modalScale 0.25s ease-out; }
+        @keyframes modalScale { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        iframe { width: 100%; height: calc(100% - 60px); border: none; }
+        
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #1A1A1A; color: white; padding: 12px 20px; border-radius: 40px; font-size: 13px; z-index: 1100; animation: slideInRight 0.3s ease; border-left: 3px solid var(--accent); }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        
+        .admin-panel { display: none; background: var(--bg-secondary); border-top: 1px solid var(--border); }
+        .admin-panel.active { display: block; }
+        
+        .divider-animated { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); position: relative; overflow: hidden; }
+        .divider-animated::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: shimmer 3s infinite; }
+        @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+        
+        .marquee { overflow: hidden; }
+        .marquee-content { display: flex; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-content:hover { animation-play-state: paused; }
+        
+        .reveal { opacity: 0; }
+        
+        input, textarea, select { transition: all 0.2s; background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); border-radius: 0.75rem; padding: 0.5rem 1rem; }
+        input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; }
+    </style>
+</head>
+<body>
+
+<div id="cursor" style="width: 24px; height: 24px; border: 2px solid var(--accent); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: all 0.15s ease; display: none;"></div>
+
+<nav class="navbar fixed top-0 w-full z-50 px-6 md:px-8 lg:px-16 py-5" id="navbar">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: var(--accent);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 17 L6 7 L12 7 Q16 7 16 11 Q16 15 12 15 L6 15" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-lg font-semibold" style="font-family: 'Clash Display';">BUILDER</span>
+        </div>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="#proyectos" class="text-sm font-medium hover:text-[var(--accent)] transition">Proyectos</a>
+            <a href="#metricas" class="text-sm font-medium hover:text-[var(--accent)] transition">Métricas</a>
+            <a href="#contacto" class="text-sm font-medium hover:text-[var(--accent)] transition">Contacto</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--bg-secondary)] transition"><i class="fas fa-sun text-lg" id="theme-icon"></i></button>
+            <button id="mobile-menu-btn" class="lg:hidden w-9 h-9 flex items-center justify-center"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden absolute top-full left-0 w-full glass border-t border-[var(--border)]"><div class="px-6 py-6 space-y-4"><a href="#proyectos" class="block py-2">Proyectos</a><a href="#metricas" class="block py-2">Métricas</a><a href="#contacto" class="block py-2">Contacto</a></div></div>
+</nav>
+
+<main>
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover"><source src="https://videos.pexels.com/video-files/3129595/3129595-uhd_2560_1440_30fps.mp4" type="video/mp4"></video>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70"></div>
+        </div>
+        <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-8 lg:px-16 py-32 text-center">
+            <div class="glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/20 mb-6"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span><span class="text-xs font-medium text-white">AI-Powered Venture Studio</span></div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-[1.1]">Construimos productos<br><span id="typewriter" class="text-gradient" style="background: linear-gradient(135deg, #60A5FA, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">con inteligencia artificial</span></h1>
+                <p class="text-base md:text-lg text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">BUILDER VENTURE STUDIO es un estudio de construcción de productos digitales. Usamos inteligencia artificial para acelerar el desarrollo, validar ideas y lanzar ventures funcionales en semanas, no meses. No somos un fondo. Somos constructores.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center"><a href="#proyectos" class="btn-primary px-8 py-3 rounded-full text-sm font-semibold">Ver proyectos →</a><a href="#contacto" class="glass px-8 py-3 rounded-full text-sm font-semibold text-white border border-white/20 hover:bg-white/10 transition">Hablemos</a></div>
+            </div>
+            <div class="mt-12 animate-bounce"><i class="fas fa-chevron-down text-white/50 text-2xl"></i></div>
+        </div>
+    </section>
+    
+    <section class="py-12 bg-[var(--bg-secondary)] overflow-hidden">
+        <div class="max-w-[1440px] mx-auto px-6"><p class="text-center text-xs font-medium text-[var(--text-secondary)] mb-6">Construyendo con tecnología de vanguardia</p>
+            <div class="marquee"><div class="marquee-content gap-12 items-center"><div class="flex items-center gap-12 opacity-60"><span class="text-xl font-bold">OpenAI</span><span class="text-xl font-bold">Anthropic</span><span class="text-xl font-bold">Replicate</span><span class="text-xl font-bold">Stability</span><span class="text-xl font-bold">LangChain</span><span class="text-xl font-bold">Vercel</span></div><div class="flex items-center gap-12 opacity-60"><span class="text-xl font-bold">OpenAI</span><span class="text-xl font-bold">Anthropic</span><span class="text-xl font-bold">Replicate</span><span class="text-xl font-bold">Stability</span><span class="text-xl font-bold">LangChain</span><span class="text-xl font-bold">Vercel</span></div></div></div>
+        </div>
+    </section>
