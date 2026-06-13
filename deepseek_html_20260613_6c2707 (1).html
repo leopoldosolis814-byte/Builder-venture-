@@ -168,3 +168,193 @@
             <div class="marquee"><div class="marquee-content gap-12 items-center"><div class="flex items-center gap-12 opacity-60"><span class="text-xl font-bold">OpenAI</span><span class="text-xl font-bold">Anthropic</span><span class="text-xl font-bold">Replicate</span><span class="text-xl font-bold">Stability</span><span class="text-xl font-bold">LangChain</span><span class="text-xl font-bold">Vercel</span></div><div class="flex items-center gap-12 opacity-60"><span class="text-xl font-bold">OpenAI</span><span class="text-xl font-bold">Anthropic</span><span class="text-xl font-bold">Replicate</span><span class="text-xl font-bold">Stability</span><span class="text-xl font-bold">LangChain</span><span class="text-xl font-bold">Vercel</span></div></div></div>
         </div>
     </section>
+
+        <div class="divider-animated max-w-[1440px] mx-auto"></div>
+    
+    <section id="metricas" class="py-20 md:py-28 bg-[var(--bg-primary)]">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-8 lg:px-16">
+            <div class="max-w-3xl mb-12 reveal"><h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Impacto medible</h2><p class="text-base text-[var(--text-secondary)]">Resultados que demuestran nuestra capacidad de ejecución y construcción.</p></div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="glass rounded-2xl p-6 text-center reveal"><div class="text-3xl md:text-4xl font-bold mb-1 text-gradient" data-count="4" style="background: linear-gradient(135deg, var(--accent), #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</div><div class="text-xs font-medium text-[var(--text-secondary)]">Proyectos lanzados</div></div>
+                <div class="glass rounded-2xl p-6 text-center reveal"><div class="text-3xl md:text-4xl font-bold mb-1 text-gradient" data-count="12" style="background: linear-gradient(135deg, var(--accent), #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</div><div class="text-xs font-medium text-[var(--text-secondary)]">Semanas de build a launch</div></div>
+                <div class="glass rounded-2xl p-6 text-center reveal"><div class="text-3xl md:text-4xl font-bold mb-1 text-gradient" data-count="100" style="background: linear-gradient(135deg, var(--accent), #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</div><div class="text-xs font-medium text-[var(--text-secondary)]">IA en el workflow</div></div>
+                <div class="glass rounded-2xl p-6 text-center reveal"><div class="text-3xl md:text-4xl font-bold mb-1 text-gradient" data-count="0" style="background: linear-gradient(135deg, var(--accent), #8B5CF6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</div><div class="text-xs font-medium text-[var(--text-secondary)]">Capital externo requerido</div></div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="divider-animated max-w-[1440px] mx-auto"></div>
+    
+    <section id="proyectos" class="py-20 md:py-28 bg-[var(--bg-secondary)]">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-8 lg:px-16">
+            <div class="max-w-3xl mb-12 reveal"><h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Proyectos en construcción</h2><p class="text-base text-[var(--text-secondary)]">Ventures que estamos construyendo actualmente con IA como acelerador.</p></div>
+            <div id="proyectosGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+    
+    <div class="divider-animated max-w-[1440px] mx-auto"></div>
+    
+    <section id="contacto" class="py-20 md:py-28 bg-[var(--bg-primary)]">
+        <div class="max-w-[1440px] mx-auto px-6 md:px-8 lg:px-16">
+            <div class="glass rounded-3xl p-8 md:p-12 text-center reveal"><h2 class="text-3xl md:text-4xl font-bold mb-4">¿Construimos algo juntos?</h2><p class="text-base text-[var(--text-secondary)] max-w-xl mx-auto mb-6">Si tienes una idea o quieres formar parte del próximo venture, hablemos.</p><a href="mailto:hello@builder.studio" class="btn-primary px-8 py-3 rounded-full text-sm font-semibold inline-block">hello@builder.studio</a></div>
+        </div>
+    </section>
+    
+    <div id="adminPanel" class="admin-panel py-12 px-6">
+        <div class="max-w-6xl mx-auto bg-[var(--bg-tertiary)] rounded-2xl border border-[var(--border)] p-6">
+            <div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold"><i class="fas fa-lock mr-2"></i> Panel de Administración</h2><button onclick="exportarProyectos()" class="text-sm border border-[var(--border)] px-4 py-2 rounded-xl hover:bg-[var(--bg-secondary)] transition"><i class="fas fa-download mr-1"></i> Exportar</button></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <input type="hidden" id="projId">
+                <input type="text" id="projNombre" placeholder="Nombre del proyecto" class="rounded-xl px-4 py-2 text-sm">
+                <input type="text" id="projDescripcion" placeholder="Descripción corta" class="rounded-xl px-4 py-2 text-sm">
+                <select id="projEstado" class="rounded-xl px-4 py-2 text-sm"><option value="Ideación">🔎 Ideación</option><option value="MVP">⚡ MVP</option><option value="Fase1">📌 Fase 1</option><option value="Fase2">🚀 Fase 2</option><option value="Fase3">🌟 Fase 3</option></select>
+                <input type="text" id="projIcono" placeholder="Icono (ej: 🎨, 🤖, 🧠)" class="rounded-xl px-4 py-2 text-sm">
+                <textarea id="projHtml" rows="2" placeholder="HTML interno del proyecto" class="rounded-xl px-4 py-2 text-sm"></textarea>
+                <div class="flex items-center gap-4"><label class="flex items-center gap-2 text-sm"><input type="checkbox" id="projActivo"> Activo en landing</label></div>
+            </div>
+            <div class="flex gap-3 mb-8"><button onclick="guardarProyecto()" class="btn-primary px-5 py-2 rounded-xl text-sm font-semibold">Guardar proyecto</button><button onclick="limpiarFormulario()" class="border border-[var(--border)] px-5 py-2 rounded-xl text-sm">Cancelar</button></div>
+            <h3 class="font-semibold mb-3">Proyectos existentes</h3>
+            <div id="adminLista" class="space-y-2 max-h-80 overflow-y-auto"></div>
+        </div>
+    </div>
+</main>
+
+<footer class="border-t border-[var(--border)] py-8 text-center text-xs text-[var(--text-tertiary)] bg-[var(--bg-primary)]"><p>© 2024 BUILDER VENTURE STUDIO — Construyendo el futuro, un proyecto a la vez.</p></footer>
+
+<div id="modalIframe" class="modal-iframe">
+    <div class="modal-content">
+        <div class="flex justify-between items-center px-6 py-3 border-b bg-white"><span id="modalTitulo" class="font-semibold text-slate-800">Vista previa</span><button onclick="cerrarModal()" class="text-slate-400 hover:text-slate-800"><i class="fas fa-times text-xl"></i></button></div>
+        <iframe id="iframeProyecto" title="Vista previa del proyecto"></iframe>
+    </div>
+</div>
+
+    <script>
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const cursor = document.getElementById('cursor');
+    if (window.matchMedia('(pointer: fine)').matches) {
+        cursor.style.display = 'block';
+        document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX - 12 + 'px'; cursor.style.top = e.clientY - 12 + 'px'; });
+        document.querySelectorAll('a, button, .project-card').forEach(el => { el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(2)'); el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)'); });
+    }
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+    if (localStorage.getItem('theme') === 'dark') htmlEl.classList.add('dark');
+    themeToggle.addEventListener('click', () => {
+        htmlEl.classList.toggle('dark');
+        const isDark = htmlEl.classList.contains('dark');
+        themeIcon.classList.replace(isDark ? 'fa-sun' : 'fa-moon', isDark ? 'fa-moon' : 'fa-sun');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    
+    const words = ['con inteligencia artificial', 'startups que escalan', 'productos que importan', 'el futuro hoy'];
+    let wordIndex = 0, charIndex = 0, isDeleting = false;
+    const typewriter = document.getElementById('typewriter');
+    function type() {
+        const currentWord = words[wordIndex];
+        if (isDeleting) typewriter.textContent = currentWord.substring(0, charIndex - 1), charIndex--;
+        else typewriter.textContent = currentWord.substring(0, charIndex + 1), charIndex++;
+        if (!isDeleting && charIndex === currentWord.length) { isDeleting = true; setTimeout(type, 2000); }
+        else if (isDeleting && charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; setTimeout(type, 500); }
+        else setTimeout(type, isDeleting ? 50 : 100);
+    }
+    setTimeout(type, 1000);
+    
+    document.querySelectorAll('[data-count]').forEach(counter => {
+        const target = parseFloat(counter.getAttribute('data-count'));
+        ScrollTrigger.create({ trigger: counter, start: 'top 80%', onEnter: () => { gsap.to(counter, { innerHTML: target, duration: 2, snap: { innerHTML: 1 }, onUpdate: function() { counter.innerHTML = Math.floor(parseFloat(counter.innerHTML)); } }); }, once: true });
+    });
+    
+    gsap.utils.toArray('.reveal').forEach(el => { gsap.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, scrollTrigger: { trigger: el, start: 'top 85%' } }); });
+    
+    let proyectos = [];
+    
+    const memeArtHTML = '<!DOCTYPE html><html><head><style>body{font-family:sans-serif;background:linear-gradient(135deg,#FFD600,#FF6B00);margin:0;display:flex;align-items:center;justify-content:center;height:100vh;color:white;text-align:center;}</style></head><body><div><h1 style="font-size:3rem;">🎬 Meme&Art AI</h1><p>Generador de memes + Marketplace + Créditos IA</p><button style="background:white;color:black;border:none;padding:12px 24px;border-radius:40px;margin-top:20px;">Ver demo →</button></div></body></html>';
+    
+    function guardarEnLocalStorage() { localStorage.setItem('builder_ventures', JSON.stringify(proyectos)); }
+    
+    function cargarProyectos() {
+        const stored = localStorage.getItem('builder_ventures');
+        if (stored) {
+            proyectos = JSON.parse(stored);
+        } else {
+            proyectos = [
+                { id: Date.now(), nombre: "Meme&Art AI Studio", descripcion: "Plataforma de generación de memes y arte con IA. Marketplace integrado y sistema de créditos.", estado: "Fase2", icono: "🎨", activo: true, htmlContent: memeArtHTML },
+                { id: Date.now()+1, nombre: "TARS", descripcion: "Asistente IA con voz, memoria e integraciones empresariales.", estado: "Fase2", icono: "🧠", activo: true, htmlContent: "<html><body style='background:#0F172A;display:flex;align-items:center;justify-content:center;height:100vh;color:white;text-align:center;'><div><h1>🧠 TARS</h1><p>Asistente IA con voz</p></div></body></html>" },
+                { id: Date.now()+2, nombre: "Aether", descripcion: "Software para gestión de operaciones de transporte ejecutivo.", estado: "Fase1", icono: "✈️", activo: true, htmlContent: "<html><body style='background:#0F172A;display:flex;align-items:center;justify-content:center;height:100vh;color:white;text-align:center;'><div><h1>✈️ Aether</h1><p>Transporte ejecutivo</p></div></body></html>" },
+                { id: Date.now()+3, nombre: "Story2Action", descripcion: "Sistema que convierte Instagram en conversaciones de venta.", estado: "MVP", icono: "📱", activo: true, htmlContent: "<html><body style='background:#0F172A;display:flex;align-items:center;justify-content:center;height:100vh;color:white;text-align:center;'><div><h1>📱 Story2Action</h1><p>Instagram → Ventas</p></div></body></html>" },
+                { id: Date.now()+4, nombre: "GhostSeller", descripcion: "Agentes IA para automatizar ecommerce workflows.", estado: "MVP", icono: "👻", activo: true, htmlContent: "<html><body style='background:#0F172A;display:flex;align-items:center;justify-content:center;height:100vh;color:white;text-align:center;'><div><h1>👻 GhostSeller</h1><p>Automatización ecommerce</p></div></body></html>" }
+            ];
+            guardarEnLocalStorage();
+        }
+        renderizarProyectos();
+        renderizarAdminLista();
+    }
+    
+    function renderizarProyectos() {
+        const grid = document.getElementById('proyectosGrid');
+        const activos = proyectos.filter(p => p.activo);
+        if (!activos.length) { grid.innerHTML = '<div class="col-span-full text-center py-12 text-[var(--text-secondary)]">No hay proyectos activos</div>'; return; }
+        grid.innerHTML = activos.map(proj => `<div class="project-card p-6 reveal" onclick="verProyecto(${proj.id})"><div class="text-5xl mb-4">${proj.icono || '🚀'}</div><h3 class="text-xl font-semibold mb-2">${escapeHtml(proj.nombre)}</h3><p class="text-sm text-[var(--text-secondary)] mb-4">${escapeHtml(proj.descripcion)}</p><div class="flex justify-between items-center"><span class="status-badge status-${proj.estado}">${proj.estado === 'Fase1' ? '📌 Fase 1' : proj.estado === 'Fase2' ? '🚀 Fase 2' : proj.estado === 'Fase3' ? '🌟 Fase 3' : proj.estado === 'MVP' ? '⚡ MVP' : '🔎 Ideación'}</span><span class="text-xs text-[var(--accent)]">Ver artifact →</span></div></div>`).join('');
+        gsap.utils.toArray('.reveal').forEach(el => { gsap.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: el, start: 'top 90%' } }); });
+    }
+    
+    function renderizarAdminLista() {
+        const container = document.getElementById('adminLista');
+        if (!container) return;
+        container.innerHTML = proyectos.map(proj => `<div class="flex justify-between items-center bg-[var(--bg-primary)] p-3 rounded-xl border border-[var(--border)]"><div class="flex items-center gap-3"><span class="text-2xl">${proj.icono || '📄'}</span><div><p class="font-medium text-sm">${escapeHtml(proj.nombre)}</p><p class="text-xs text-[var(--text-secondary)]">${proj.estado} · ${proj.activo ? 'Activo' : 'Inactivo'}</p></div></div><div class="flex gap-2"><button onclick="editarProyecto(${proj.id})" class="text-sm px-2 py-1 rounded hover:bg-[var(--bg-secondary)]"><i class="fas fa-pen"></i></button><button onclick="eliminarProyecto(${proj.id})" class="text-sm px-2 py-1 rounded hover:bg-[var(--bg-secondary)]"><i class="fas fa-trash"></i></button></div></div>`).join('');
+    }
+    
+    function guardarProyecto() {
+        const id = document.getElementById('projId').value;
+        const nombre = document.getElementById('projNombre').value.trim();
+        const descripcion = document.getElementById('projDescripcion').value.trim();
+        const estado = document.getElementById('projEstado').value;
+        const icono = document.getElementById('projIcono').value.trim() || '🚀';
+        const activo = document.getElementById('projActivo').checked;
+        let htmlContent = document.getElementById('projHtml').value.trim();
+        if (!htmlContent) htmlContent = `<html><body style="background:#0A0A0A;display:flex;align-items:center;justify-content:center;height:100vh;color:white;"><div><h2>${nombre}</h2><p>Vista previa</p></div></body></html>`;
+        if (!nombre) { mostrarToast("El nombre es obligatorio"); return; }
+        if (id) { const idx = proyectos.findIndex(p => p.id == id); if (idx !== -1) proyectos[idx] = { ...proyectos[idx], nombre, descripcion, estado, icono, activo, htmlContent }; }
+        else proyectos.push({ id: Date.now(), nombre, descripcion, estado, icono, activo, htmlContent });
+        guardarEnLocalStorage(); renderizarProyectos(); renderizarAdminLista(); limpiarFormulario(); mostrarToast("Proyecto guardado");
+    }
+    
+    function editarProyecto(id) {
+        const proj = proyectos.find(p => p.id == id);
+        if (proj) {
+            document.getElementById('projId').value = proj.id;
+            document.getElementById('projNombre').value = proj.nombre;
+            document.getElementById('projDescripcion').value = proj.descripcion;
+            document.getElementById('projEstado').value = proj.estado;
+            document.getElementById('projIcono').value = proj.icono;
+            document.getElementById('projActivo').checked = proj.activo;
+            document.getElementById('projHtml').value = proj.htmlContent;
+            window.scrollTo({ top: document.getElementById('adminPanel').offsetTop - 80, behavior: 'smooth' });
+        }
+    }
+    
+    function eliminarProyecto(id) { if (confirm("¿Eliminar?")) { proyectos = proyectos.filter(p => p.id != id); guardarEnLocalStorage(); renderizarProyectos(); renderizarAdminLista(); mostrarToast("Proyecto eliminado"); } }
+    function limpiarFormulario() { document.getElementById('projId').value = ''; document.getElementById('projNombre').value = ''; document.getElementById('projDescripcion').value = ''; document.getElementById('projEstado').value = 'Ideación'; document.getElementById('projIcono').value = ''; document.getElementById('projActivo').checked = true; document.getElementById('projHtml').value = ''; }
+    function verProyecto(id) { const proj = proyectos.find(p => p.id == id); if (proj && proj.htmlContent) { document.getElementById('modalTitulo').innerText = proj.nombre; document.getElementById('iframeProyecto').srcdoc = proj.htmlContent; document.getElementById('modalIframe').classList.add('active'); } else mostrarToast("Vista previa no disponible"); }
+    function cerrarModal() { document.getElementById('modalIframe').classList.remove('active'); }
+    function exportarProyectos() { const dataStr = JSON.stringify(proyectos, null, 2); const blob = new Blob([dataStr], {type: "application/json"}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `builder_backup_${new Date().toISOString().slice(0,19)}.json`; a.click(); URL.revokeObjectURL(url); mostrarToast("Backup exportado"); }
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+    function mostrarToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = `<i class="fas fa-bell mr-2"></i>${msg}`; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
+    
+    function verificarAdmin() { if (new URLSearchParams(window.location.search).get('admin') === 'builder2026') document.getElementById('adminPanel').classList.add('active'); }
+    
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => document.getElementById('mobile-menu')?.classList.toggle('hidden'));
+    cargarProyectos();
+    verificarAdmin();
+</script>
+</body>
+</html>
